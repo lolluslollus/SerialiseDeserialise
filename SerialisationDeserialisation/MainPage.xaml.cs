@@ -26,5 +26,21 @@ namespace SerialisationDeserialisation
         {
             this.InitializeComponent();
         }
+
+        private async void OnSerialise_Click(object sender, RoutedEventArgs e)
+        {
+            await SuspensionManager.SaveSettingsAsync(Data01.GetInstance());
+        }
+
+        private async void OnDeserialiseV1_Click(object sender, RoutedEventArgs e)
+        {
+            var newData01 = await SuspensionManager.LoadSettingsAsyncV1();
+            var dd = Data01.GetInstance();
+        }
+        private async void OnDeserialiseV2_Click(object sender, RoutedEventArgs e)
+        {
+            await SuspensionManager.LoadSettingsAsyncV2();
+            var dd = Data01.GetInstance();
+        }
     }
 }
